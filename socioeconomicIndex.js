@@ -37,8 +37,8 @@ const gndGroup = d3.select("#socioeconomic-index")
 
 // Read in the data ------------------------------------------------------------
 Promise.all([
-    d3.json("/resources/gnd_topo_simp.json"),
-    d3.csv("/resources/gnd_combined_pc1.csv", d3.autoType)
+    d3.json("./resources/gnd_topo_simp.json"),
+    d3.csv("./resources/gnd_combined_pc1.csv", d3.autoType)
   ])
   .then(function([jsonData, csvData]) {
 
