@@ -259,6 +259,9 @@
           d3.select("#migrations-scope")
             .text("Scope: Entire Country")
 
+          d3.select("#selected-dsd")
+            .attr("id", null);
+
           mapGroup.selectAll("path")
             .attr("fill", d => colorScale(d.properties.code_4, "country"))
             .attr("stroke", "none");
