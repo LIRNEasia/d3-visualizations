@@ -5,35 +5,328 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Jekyll v3.8.6">
-  <title>Starter Template · Bootstrap</title>
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/">
-
-  <!-- Bootstrap core CSS -->
+  <meta name="author" content="Viren Dias">
+  <title>LIRNEasia · D3 Visualizations</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
+  <div id="header"></div>
   <main role="main" class="container">
+    <div id="migrations" style="padding: 3rem 1.5rem;">
+      <h1>Internal Migration</h1>
+      <h5>How to Read</h5>
+      <p>This is a bivariate choropleth map. Outward migrations are represented by a green univariate color scale and inward migrations are represented by a pink univariate color scale. Both color scales have been rendered on the same map and the
+        blended color, purple, represents both outward and inward migrations.</p>
+      <p>A higher color saturation represents higher numbers and vice versa. The saturation levels are based on quantiles, and therefore will change based on the defined scope.
+      <h5>Controls</h5>
+      <p>
+      <ul>
+        <li>Click on a DSD to change the scope to that DSD</li>
+        <li>Double click anywhere to reset the scope to the entire country</li>
+      </ul>
+      </p>
+  </main>
 
-    <div style="padding: 3rem 1.5rem; text-align: center;">
-      <h1>Interactive Visualizations With D3</h1>
-      <p class="lead">Here are a few interactive visualizations I have been working on. <br>Let me know what you guys think.</p>
-    </div>
-
-    <div id="socioeconomic-index">
-
-    </div>
-
-  </main><!-- /.container -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
-  <script src="./socioeconomicIndex.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#header").load("./header.html")
+    });
+
+    // Create title, introduction and empty SVG --------------------------------
+    const width = 480;
+    const height = 480;
+    const margin = 20;
+
+    d3.select("#migrations")
+      .append("h2")
+      .attr("id", "migrations-scope")
+      .text("Scope: Entire Country")
+
+    d3.select("#migrations")
+      .append("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .append("g")
+
+    const svg = d3.select("#migrations")
+      .select("svg")
+
+    const mapGroup = d3.select("#migrations")
+      .select("svg")
+      .select("g")
+
+    Promise.all([
+        d3.json("./resources/dsd_topo_simp.json"),
+        d3.json("./resources/dsd_migrations.json")
+      ])
+      .then(function([geoData, migData]) {
+        // Parse the data ------------------------------------------------------
+        const dsdData = topojson.feature(geoData, geoData.objects.dsds);
+
+        // Render the base map -------------------------------------------------
+        const geoProjection = d3.geoMercator()
+          .fitExtent([
+            [margin, margin],
+            [width - margin, height - margin]
+          ], dsdData);
+
+        const geoGenerator = d3.geoPath()
+          .projection(geoProjection);
+
+        mapGroup.selectAll("path")
+          .data(dsdData.features)
+          .enter()
+          .append("path")
+          .attr("d", geoGenerator);
+
+        // Render the map colors -----------------------------------------------
+        const colorScheme = [
+          ["#e8e8e8", "#a6d9d9", "#5ac8c8"],
+          ["#d3a7cb", "#a6a7cb", "#5aa7c8"],
+          ["#be64ac", "#a664ac", "#5a64ac"]
+        ]
+
+        let migInArray = [];
+        let migOutArray = [];
+
+        d3.values(migData).forEach(dsd => {
+          migInArray.push(d3.sum(d3.values(dsd.migrations_in)));
+          migOutArray.push(d3.sum(d3.values(dsd.migrations_out)));
+        });
+
+        const migInScale = d3.scaleQuantile()
+          .domain(migInArray)
+          .range([0, 1, 2]);
+
+        const migOutScale = d3.scaleQuantile()
+          .domain(migInArray)
+          .range([0, 1, 2]);
+
+        function colorScale(dsdCode, scope) {
+          if (scope == "country") {
+            if (migData[dsdCode]) {
+              const migIn = d3.sum(d3.values(migData[dsdCode].migrations_in));
+              const migOut = d3.sum(d3.values(migData[dsdCode].migrations_out));
+
+              return colorScheme[migInScale(migIn)][migOutScale(migOut)];
+            } else {
+              return colorScheme[0][0];
+            }
+          } else {
+            const migInArray = d3.values(migData[scope].migrations_in);
+            const migOutArray = d3.values(migData[scope].migrations_out);
+
+            const migInScale = d3.scaleQuantile()
+              .domain(migInArray)
+              .range([0, 1, 2]);
+
+            const migOutScale = d3.scaleQuantile()
+              .domain(migInArray)
+              .range([0, 1, 2]);
+
+            const migIn = migData[scope].migrations_in[dsdCode] ?
+              migData[scope].migrations_in[dsdCode] : 0;
+            const migOut = migData[scope].migrations_out[dsdCode] ?
+              migData[scope].migrations_out[dsdCode] : 0;
+
+            return colorScheme[migInScale(migIn)][migOutScale(migOut)];
+          }
+        }
+
+        mapGroup.selectAll("path")
+          .attr("fill", d => colorScale(d.properties.code_4, "country"))
+          .attr("stroke", "none");
+
+        // Render the legend ---------------------------------------------------
+        const legendGroup = svg.append("g")
+        const categories = colorScheme.length;
+        const dimension = 15;
+
+        legendGroup.selectAll("rect")
+          .data(d3.range(Math.pow(categories, 2)).map(function(d) {
+            return {
+              x: d % categories,
+              y: Math.floor(d / categories)
+            }
+          }))
+          .enter()
+          .append("rect")
+          .attr("x", d => (d.x) * dimension)
+          .attr("y", d => (d.y) * dimension)
+          .attr("width", dimension)
+          .attr("height", dimension)
+          .style("fill", d => colorScheme[d.x][d.y]);
+
+        legendGroup.append("marker")
+          .attr("id", "arrowhead")
+          .attr("markerWidth", 5)
+          .attr("markerHeight", 5)
+          .attr("refY", 2)
+          .attr("refX", 1)
+          .attr("orient", "auto")
+          .append("path")
+          .attr("d", "M 0,0 L 5,2 L 0,4 Q 2,2 0,0 Z");
+
+        legendGroup.append("line")
+          .attr("x1", 0)
+          .attr("y1", 0)
+          .attr("x2", categories * dimension + 3)
+          .attr("y2", 0)
+          .attr("marker-end", "url(#arrowhead)")
+          .style("stroke", "black")
+          .style("stroke-width", 1)
+          .style("stroke-linecap", "square")
+
+        legendGroup.append("line")
+          .attr("x1", 0)
+          .attr("y1", 0)
+          .attr("x2", 0)
+          .attr("y2", categories * dimension + 3)
+          .attr("marker-end", "url(#arrowhead)")
+          .style("stroke", "black")
+          .style("stroke-width", 1)
+          .style("stroke-linecap", "square");
+
+        legendGroup
+          .append("text")
+          .text("Inward migrations")
+          .attr("text-anchor", "middle")
+          .attr("fill", "black")
+          .attr("font-size", 5.5)
+          .attr("transform", "translate(22.5, -7) rotate(180)");
+
+        legendGroup
+          .append("text")
+          .text("Outward migrations")
+          .attr("text-anchor", "middle")
+          .attr("fill", "black")
+          .attr("font-size", 5.5)
+          .attr("transform", "translate(-7, 22.5) rotate(90)");
+
+        legendGroup
+          .attr("transform", "translate(55, 80) rotate(-135)")
+
+        // Add mouse hover behaviour for each DSD ------------------------------
+        mapGroup.selectAll("path")
+          .on("mouseover", function() {
+            d3.select(this)
+              .raise()
+              .attr("stroke", "black")
+              .attr("stroke-width", 0.35);
+          })
+          .on("mouseout", function() {
+            d3.select(this)
+              .attr("stroke", "none");
+
+            d3.select("#selected-dsd")
+              .raise()
+              .attr("stroke", "black")
+              .attr("stroke-width", 0.7);
+          });
+
+        // Add mouse click behaviour for each DSD ------------------------------
+        mapGroup.selectAll("path")
+          .on("click", function(s) {
+            d3.select("#selected-dsd")
+              .attr("id", null);
+
+            mapGroup.selectAll("path")
+              .attr("fill", d => colorScale(
+                d.properties.code_4, s.properties.code_4
+              ))
+              .attr("stroke", "none");
+
+            d3.select(this)
+              .raise()
+              .attr("id", "selected-dsd")
+              .attr("stroke", "black")
+              .attr("stroke-width", 0.7);
+
+            d3.select("#migrations-scope")
+              .text("Scope: " + s.properties.dsd_name + " DSD")
+
+            popovers(s.properties.code_4);
+          });
+
+        // Add mouse double click behaviour ------------------------------------
+        svg.on("dblclick", function() {
+          d3.select("#migrations-scope")
+            .text("Scope: Entire Country")
+
+          mapGroup.selectAll("path")
+            .attr("fill", d => colorScale(d.properties.code_4, "country"))
+            .attr("stroke", "none");
+
+          popovers("country");
+        })
+
+        // Add popovers for each DSD -------------------------------------------
+        $(function() {
+          $('[data-toggle="popover"]').popover({
+            html: true,
+            trigger: "hover",
+            sanitize: false
+          })
+        });
+
+        function popovers(scope) {
+          mapGroup.selectAll("path")
+            .attr("data-toggle", "popover")
+            .attr("title", function(d) {
+              return "<small class='text-muted'>" + d.properties.prov_name +
+                " Province</small><br><small class='text-muted'>" +
+                d.properties.dist_name + " District</small>" +
+                "<div style='height:5px;'></div>" + d.properties.dsd_name;
+            })
+
+          if (scope == "country") {
+            mapGroup.selectAll("path")
+              .attr("data-content", function(d) {
+                const dsdCode = d.properties.code_4;
+                const migIn = migData[dsdCode] ?
+                  d3.sum(d3.values(migData[dsdCode].migrations_in)) : 0;
+                const migOut = migData[dsdCode] ?
+                  d3.sum(d3.values(migData[dsdCode].migrations_out)) : 0;
+
+                return d3.format(",")(migIn) +
+                  "<small> inward migrations</small><br>" +
+                  d3.format(",")(migOut) + "<small> outward migrations</small>";
+              });
+          } else {
+            mapGroup.selectAll("path")
+              .attr("data-content", function(d) {
+                const dsdCode = d.properties.code_4;
+                let migIn;
+                let migOut;
+
+                if (scope == dsdCode) {
+                  migIn = migData[dsdCode] ?
+                    d3.sum(d3.values(migData[dsdCode].migrations_in)) : 0;
+                  migOut = migData[dsdCode] ?
+                    d3.sum(d3.values(migData[dsdCode].migrations_out)) : 0;
+                } else {
+                  migIn = migData[scope].migrations_in[dsdCode] ?
+                    migData[scope].migrations_in[dsdCode] : 0;
+                  migOut = migData[scope].migrations_out[dsdCode] ?
+                    migData[scope].migrations_out[dsdCode] : 0;
+                }
+
+                return d3.format(",")(migIn) +
+                  "<small> inward migrations</small><br>" +
+                  d3.format(",")(migOut) + "<small> outward migrations</small>";
+              });
+          }
+        }
+
+        popovers("country");
+      })
+  </script>
 </body>
 
 </html>
