@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Viren Dias">
+  <title>LIRNEasia · D3 Visualizations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="header"></div>
+  <main role="main" class="container">
+    <div id="algorithmic-bias" style="padding: 3rem 1.5rem;">
+      <h2>Algorithmic Bias</h2>
+      <h5>How to Read</h5>
+      <p>This is a collection of bar charts comparing the results of an algorithm (COMPAS) that assigns risk scores based on how likely a defendant will recidivate, against the actual two-year outcome. Each bar chart depicts the same dataset but from different perspectives. Notice how the algorithm appears to be fair with regard to ethnicity in some perspectives but not others.</p>
+      <h5>Controls</h5>
+      <ul>
+        <li>Click on any of the buttons below to change perspective.</li>
+        <li>Hover over the bars for more information</li>
+      </ul>
+      <p></p>
+      <h3 id="algorithmic-bias-perspective" class="d-inline-block align-middle">Perspective:</h3>
+      <button class="btn btn-outline-dark btn-sm active" d="group">Risk Score Group</button>
+      <button class="btn btn-outline-dark btn-sm" d="positive">Recidivants</button>
+      <button class="btn btn-outline-dark btn-sm" d="negative">Non-Recidivants</button>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#header").load("./header.html")
+    });
+
+    // Render the visualization ------------------------------------------------
+    const width = 960;
+    const height = 480;
+    const margin = 60;
+
+    d3.select("#algorithmic-bias")
+      .append("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .append("g")
+
+    const svg = d3.select("#algorithmic-bias")
+      .select("svg")
+
+    const chartGroup = d3.select("#algorithmic-bias")
+      .select("svg")
+      .select("g")
+
+    d3.csv("./resources/recidivism_bias.csv")
+      .then(function(biasData) {
+        // Parse the data ------------------------------------------------------
+        let chartData = [];
+        for (var score = 1; score <= 10; score++) {
+          const blackGroup = biasData.filter(d => d.score == score)
+            .filter(d => d.ethnicity == "black")
+            .filter(d => d.recidivated == 1)
+            .length /
+            biasData.filter(d => d.score == score)
+            .filter(d => d.ethnicity == "black")
+            .length;
+
+          const blackPositive = biasData.filter(d => d.recidivated == 1)
+            .filter(d => d.ethnicity == "black")
+            .filter(d => d.score == score)
+            .length /
+            biasData.filter(d => d.recidivated == 1)
+            .filter(d => d.ethnicity == "black")
+            .length;
+
+          const blackNegative = biasData.filter(d => d.recidivated == 0)
+            .filter(d => d.ethnicity == "black")
+            .filter(d => d.score == score)
+            .length /
+            biasData.filter(d => d.recidivated == 0)
+            .filter(d => d.ethnicity == "black")
+            .length;
+
+          const whiteGroup = biasData.filter(d => d.score == score)
+            .filter(d => d.ethnicity == "white")
+            .filter(d => d.recidivated == 1)
+            .length /
+            biasData.filter(d => d.score == score)
+            .filter(d => d.ethnicity == "white")
+            .length;
+
+          const whitePositive = biasData.filter(d => d.recidivated == 1)
+            .filter(d => d.ethnicity == "white")
+            .filter(d => d.score == score)
+            .length /
+            biasData.filter(d => d.recidivated == 1)
+            .filter(d => d.ethnicity == "white")
+            .length;
+
+          const whiteNegative = biasData.filter(d => d.recidivated == 0)
+            .filter(d => d.ethnicity == "white")
+            .filter(d => d.score == score)
+            .length /
+            biasData.filter(d => d.recidivated == 0)
+            .filter(d => d.ethnicity == "white")
+            .length
+
+          chartData.push({
+            score: score,
+            black: {
+              group: blackGroup,
+              positive: blackPositive,
+              negative: blackNegative
+            },
+            white: {
+              group: whiteGroup,
+              positive: whitePositive,
+              negative: whiteNegative
+            }
+          });
+        }
+
+        // Render the chart area -----------------------------------------------
+        const yScale = d3.scaleLinear()
+          .domain([0, 1])
+          .rangeRound([height - margin, margin]);
+
+        const xScale = d3.scaleBand()
+          .domain(chartData.map(d => d.score))
+          .rangeRound([margin, width - margin])
+          .padding(0.2);
+
+        const groupScale = d3.scaleBand()
+          .domain(["black", "white"])
+          .rangeRound([0, xScale.bandwidth()])
+          .padding(0.1);
+
+        const scoreGroup = chartGroup.selectAll("g")
+          .data(chartData)
+          .enter()
+          .append("g")
+          .attr("transform", d => "translate(" + xScale(d.score) + ",0)");
+
+        scoreGroup.append("rect")
+          .attr("class", "blacks")
+          .attr("x", groupScale("black"))
+          .attr("y", d => yScale(0))
+          .attr("width", groupScale.bandwidth())
+          .attr("height", 0)
+          .attr("fill", d3.schemeCategory10[0]);
+
+        scoreGroup.append("rect")
+          .attr("class", "whites")
+          .attr("x", groupScale("white"))
+          .attr("y", d => yScale(0))
+          .attr("width", groupScale.bandwidth())
+          .attr("height", 0)
+          .attr("fill", d3.schemeCategory10[1]);
+
+        // Render the axes -----------------------------------------------------
+        svg.append("g")
+          .attr("transform", "translate(0, " + (5 + height - margin) + ")")
+          .call(d3.axisBottom(xScale));
+
+        svg.append("text")
+          .text("COMPAS risk score")
+          .attr("text-anchor", "middle")
+          .attr("font-size", 14)
+          .attr("x", width / 2)
+          .attr("y", 50 + height - margin);
+
+        const yAxis = svg.append("g")
+          .attr("transform", "translate(" + (margin - 5) + ", 0)")
+          .call(d3.axisLeft(yScale).tickFormat(d3.format(".0%")));
+
+        const yLabel = svg.append("text")
+          .text("Percentage of defendants that recidivated in each group")
+          .attr("text-anchor", "middle")
+          .attr("font-size", 14)
+          .attr("transform", "translate(10, " + height / 2 + ") rotate(-90)");
+
+        // Add mouse hover behaviour for each bar ------------------------------
+        chartGroup.selectAll("g")
+          .on("mouseover", function() {
+            d3.select(this)
+              .select(".blacks")
+              .attr("fill", d3.color(d3.schemeCategory10[0]).brighter(0.5));
+
+            d3.select(this)
+              .select(".whites")
+              .attr("fill", d3.color(d3.schemeCategory10[1]).brighter(0.5));
+          })
+          .on("mouseout", function() {
+            d3.select(this)
+              .select(".blacks")
+              .attr("fill", d3.schemeCategory10[0]);
+
+            d3.select(this)
+              .select(".whites")
+              .attr("fill", d3.schemeCategory10[1]);
+          })
+
+        // Add popovers for each bar group -------------------------------------
+        $(function() {
+          $('[data-toggle="popover"]').popover({
+            html: true,
+            trigger: "hover",
+            sanitize: false,
+            placement: "top"
+          })
+        });
+
+        chartGroup.selectAll("g")
+          .attr("data-toggle", "popover")
+          .attr("title", d => "Risk Score: " + d.score);
+
+        // Update the chart ----------------------------------------------------
+        var changePerspective = function(perspective) {
+          const maxValue = d3.max(
+            chartData.map(d => d.black[perspective])
+            .concat(chartData.map(d => d.white[perspective]))
+          );
+          yScale.domain([0, maxValue]);
+          yAxis.transition()
+            .duration(750)
+            .call(d3.axisLeft(yScale).tickFormat(d3.format(".0%")));
+
+          d3.selectAll(".blacks")
+            .transition()
+            .duration(750)
+            .attr("x", groupScale("black"))
+            .attr("y", d => yScale(d.black[perspective]))
+            .attr("width", groupScale.bandwidth())
+            .attr("height", d => yScale(0) - yScale(d.black[perspective]));
+
+          d3.selectAll(".whites")
+            .transition()
+            .duration(750)
+            .attr("x", groupScale("white"))
+            .attr("y", d => yScale(d.white[perspective]))
+            .attr("width", groupScale.bandwidth())
+            .attr("height", d => yScale(0) - yScale(d.white[perspective]));
+
+          chartGroup.selectAll("g")
+            .attr("data-content", function(d) {
+              return d3.format(".1%")(d.black[perspective]) +
+                " <small>blacks</small><br>" +
+                d3.format(".1%")(d.white[perspective]) +
+                " <small>whites</small>";
+            });
+
+          if (perspective == "group") {
+            yLabel.text("Percentage of defendants that recidivated in each group")
+          } else if (perspective == "positive") {
+            yLabel.text("Percentage of recidivants assigned to each group")
+          } else if (perspective == "negative") {
+            yLabel.text("Percentage of non-recidivants assigned to each group")
+          }
+        }
+        changePerspective("group");
+
+        // Define button behaviour ---------------------------------------------
+        d3.select("main")
+          .selectAll("button")
+          .on("click", function() {
+            d3.select("main")
+              .selectAll("button")
+              .classed("active", false);
+            d3.select(this)
+              .classed("active", !d3.select(this).classed("active"))
+            changePerspective(d3.select(this).attr("d"));
+          });
+      })
+  </script>
+</body>
+
+</html>

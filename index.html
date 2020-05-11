@@ -14,9 +14,9 @@
   <div id="header"></div>
   <main role="main" class="container">
     <div id="migrations" style="padding: 3rem 1.5rem;">
-      <h1>Internal Migration</h1>
+      <h2>Internal Migration</h2>
       <h5>How to Read</h5>
-      <p>This is a bivariate choropleth map. Outward migrations are represented by a green univariate color scale and inward migrations are represented by a pink univariate color scale. Both color scales have been rendered on the same map and the
+      <p>This is a bivariate choropleth map of internal migration. Outward migrations are represented by a green univariate color scale and inward migrations are represented by a pink univariate color scale. Both color scales have been rendered on the same map and the
         blended color, purple, represents both outward and inward migrations.</p>
       <p>A higher color saturation represents higher numbers and vice versa. The saturation levels are based on quantiles, and therefore will change based on the defined scope.
       <h5>Controls</h5>
@@ -39,13 +39,13 @@
       $("#header").load("./header.html")
     });
 
-    // Create title, introduction and empty SVG --------------------------------
+    // Render the visualization ------------------------------------------------
     const width = 480;
     const height = 480;
     const margin = 20;
 
     d3.select("#migrations")
-      .append("h2")
+      .append("h3")
       .attr("id", "migrations-scope")
       .text("Scope: Entire Country")
 
@@ -237,6 +237,8 @@
               .attr("id", null);
 
             mapGroup.selectAll("path")
+              .transition()
+              .duration(750)
               .attr("fill", d => colorScale(
                 d.properties.code_4, s.properties.code_4
               ))
@@ -245,6 +247,11 @@
             d3.select(this)
               .raise()
               .attr("id", "selected-dsd")
+              .transition()
+              .duration(750)
+              .attr("fill", d => colorScale(
+                d.properties.code_4, s.properties.code_4
+              ))
               .attr("stroke", "black")
               .attr("stroke-width", 0.7);
 
@@ -263,6 +270,8 @@
             .attr("id", null);
 
           mapGroup.selectAll("path")
+            .transition()
+            .duration(750)
             .attr("fill", d => colorScale(d.properties.code_4, "country"))
             .attr("stroke", "none");
 
