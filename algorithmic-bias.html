@@ -16,7 +16,8 @@
     <div id="algorithmic-bias" style="padding: 3rem 1.5rem;">
       <h2>Algorithmic Bias</h2>
       <h5>How to Read</h5>
-      <p>This is a collection of bar charts comparing the results of an algorithm (COMPAS) that assigns risk scores based on how likely a defendant will recidivate, against the actual two-year outcome. Each bar chart depicts the same dataset but from different perspectives. Notice how the algorithm appears to be fair with regard to ethnicity in some perspectives but not others.</p>
+      <p>This is a collection of bar charts comparing the results of an algorithm (COMPAS) that assigns risk scores based on how likely a defendant will recidivate, against the actual two-year outcome. Each bar chart depicts the same dataset but from
+        different perspectives. Notice how the algorithm appears to be fair with regard to ethnicity in some perspectives but not others.</p>
       <h5>Controls</h5>
       <ul>
         <li>Click on any of the buttons below to change perspective.</li>
@@ -183,6 +184,40 @@
           .attr("text-anchor", "middle")
           .attr("font-size", 14)
           .attr("transform", "translate(10, " + height / 2 + ") rotate(-90)");
+
+        // Render the legend ---------------------------------------------------
+        const legendGroup = svg.append("g")
+          .attr("transform", "translate(" + width / 2 + ")");
+
+        legendGroup.append("rect")
+          .attr("x", -100)
+          .attr("y", margin / 2)
+          .attr("width", 20)
+          .attr("height", 20)
+          .style("fill", d3.schemeCategory10[0]);
+
+        legendGroup.append("text")
+          .text("Blacks")
+          .attr("text-anchor", "left")
+          .attr("alignment-baseline", "central")
+          .attr("font-size", 14)
+          .attr("x", -100 + 25)
+          .attr("y", margin / 2 + 10);
+
+        legendGroup.append("rect")
+          .attr("x", 0)
+          .attr("y", margin / 2)
+          .attr("width", 20)
+          .attr("height", 20)
+          .style("fill", d3.schemeCategory10[1]);
+
+        legendGroup.append("text")
+          .text("Whites")
+          .attr("text-anchor", "left")
+          .attr("alignment-baseline", "central")
+          .attr("font-size", 14)
+          .attr("x", 25)
+          .attr("y", margin / 2 + 10);
 
         // Add mouse hover behaviour for each bar ------------------------------
         chartGroup.selectAll("g")
