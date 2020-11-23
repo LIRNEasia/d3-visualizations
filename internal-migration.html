@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>LIRNEasia · Visualizations</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Viren Dias">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body class="mdc-typography">
+  <header class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-collapsed mdc-top-app-bar--short-has-action-item" data-mdc-auto-init="MDCTopAppBar" style="top: 0px;">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <a href="/" class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon">home</a>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+          <a href="https://lirneasia.net" target="_blank" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">LIRNEasia</span>
+          </a>
+        </section>
+    </div>
+  </header>
+  <main>
+    <h1 class="mdc-typography--headline2">Internal Migration</h1>
+    <div class="container">
+      <div id="internal-migration-vis"></div>
+      <h2 id="internal-migration-scope" class="mdc-typography--headline5">Scope: Entire Country</h2>
+      <p class="mdc-typography--body1">This is a bivariate choropleth map of internal migration in Sri Lanka, based on 9
+        months of call detail records (CDRs) from 2013. Inward and outward migrations are represented by pink and green
+        univariate color scales respectively. Both color scales have been rendered on the same map and the blended color
+        —purple—represents both inward and outward migrations.
+      </p>
+
+      <p class="mdc-typography--body1">Click or tap on a map-segment to change the scope, which then recolors the map to
+        show the inward and outward migrations with respect to that map-segment. Double-click or double-tap anywhere on
+        the map to reset the scope to the entire country. The color saturation levels are based on quantiles, and will
+        therefore change based on the selected scope.
+      </p>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+
+  <script>
+    window.mdc.autoInit();
+
+    // Render the Visualization ----------------------------------------------------------------------------------------
+    Promise.all([
+        d3.json("./resources/dsd_topology.json"),
+        d3.json("./resources/dsd_migrations.json")
+      ])
+      .then(function([geoData, migData]) {
+        // Initialize the canvas ---------------------------------------------------------------------------------------
+        const width = 600;
+        const height = 900;
+        const margin = 20;
+
+        d3.select("#internal-migration-vis")
+          .append("svg")
+          .style("max-height", "100vh")
+          .style("max-width", "100vw")
+          .attr("preserveAspectRatio", "xMidYMin meet")
+          .attr("viewBox", [0, 0, width, height])
+          .append("g");
+
+        const svg = d3.select("#internal-migration-vis")
+          .select("svg");
+
+        const mapGroup = d3.select("#internal-migration-vis")
+          .select("svg")
+          .select("g");
+
+        svgZoom = svg.node().getBoundingClientRect().height / height;
+
+        // Parse the data ----------------------------------------------------------------------------------------------
+        const dsdData = topojson.feature(geoData, geoData.objects.dsds);
+
+        // Render the base map -----------------------------------------------------------------------------------------
+        const geoProjection = d3.geoMercator()
+          .fitExtent([
+            [margin, margin],
+            [width - margin, height - margin]
+          ], dsdData);
+
+        const geoGenerator = d3.geoPath()
+          .projection(geoProjection);
+
+        mapGroup.selectAll("path")
+          .data(dsdData.features)
+          .enter()
+          .append("path")
+          .attr("d", geoGenerator);
+
+        // Render the map colors ---------------------------------------------------------------------------------------
+        const colorScheme = [
+          ["#e8e8e8", "#a6d9d9", "#5ac8c8"],
+          ["#d3a7cb", "#a6a7cb", "#5aa7c8"],
+          ["#be64ac", "#a664ac", "#5a64ac"]
+        ]
+
+        let migInArray = [];
+        let migOutArray = [];
+
+        d3.values(migData).forEach(dsd => {
+          migInArray.push(d3.sum(d3.values(dsd.migrations_in)));
+          migOutArray.push(d3.sum(d3.values(dsd.migrations_out)));
+        });
+
+        const migInScale = d3.scaleQuantile()
+          .domain(migInArray)
+          .range([0, 1, 2]);
+
+        const migOutScale = d3.scaleQuantile()
+          .domain(migInArray)
+          .range([0, 1, 2]);
+
+        function colorScale(dsdCode, scope) {
+          if (scope == "country") {
+            if (migData[dsdCode]) {
+              const migIn = d3.sum(d3.values(migData[dsdCode].migrations_in));
+              const migOut = d3.sum(d3.values(migData[dsdCode].migrations_out));
+
+              return colorScheme[migInScale(migIn)][migOutScale(migOut)];
+            } else {
+              return colorScheme[0][0];
+            }
+          } else {
+            const migInArray = d3.values(migData[scope].migrations_in);
+            const migOutArray = d3.values(migData[scope].migrations_out);
+
+            const migInScale = d3.scaleQuantile()
+              .domain(migInArray)
+              .range([0, 1, 2]);
+
+            const migOutScale = d3.scaleQuantile()
+              .domain(migInArray)
+              .range([0, 1, 2]);
+
+            const migIn = migData[scope].migrations_in[dsdCode] ? migData[scope].migrations_in[dsdCode] : 0;
+            const migOut = migData[scope].migrations_out[dsdCode] ? migData[scope].migrations_out[dsdCode] : 0;
+
+            return colorScheme[migInScale(migIn)][migOutScale(migOut)];
+          }
+        }
+
+        mapGroup.selectAll("path")
+          .style("fill", d => colorScale(d.properties.code_4, "country"))
+          .style("stroke", "none");
+
+        // Render the legend -------------------------------------------------------------------------------------------
+        const legendGroup = svg.append("g").attr("class", "vis-legend")
+        const categories = colorScheme.length;
+        const dimension = 30;
+
+        legendGroup.selectAll("rect")
+          .data(d3.range(Math.pow(categories, 2)).map(function(d) {
+            return {
+              x: d % categories,
+              y: Math.floor(d / categories)
+            }
+          }))
+          .enter()
+          .append("rect")
+          .attr("x", d => (d.x) * dimension)
+          .attr("y", d => (d.y) * dimension)
+          .attr("width", dimension)
+          .attr("height", dimension)
+          .style("fill", d => colorScheme[d.x][d.y]);
+
+        legendGroup.append("marker")
+          .attr("id", "arrowhead")
+          .attr("markerWidth", 10)
+          .attr("markerHeight", 10)
+          .attr("refY", 4)
+          .attr("refX", 2)
+          .attr("orient", "auto")
+          .append("path")
+          .attr("d", "M 0,0 L 10,4 L 0,8 Q 4,4 0,0 Z")
+          .style("fill", "var(--mdc-theme-text-primary-on-background)");
+
+        legendGroup.append("line")
+          .attr("x1", 0)
+          .attr("y1", 0)
+          .attr("x2", categories * dimension + 6)
+          .attr("y2", 0)
+          .attr("marker-end", "url(#arrowhead)")
+          .style("stroke", "var(--mdc-theme-text-primary-on-background)")
+          .style("stroke-width", 1)
+          .style("stroke-linecap", "square")
+
+        legendGroup.append("line")
+          .attr("x1", 0)
+          .attr("y1", 0)
+          .attr("x2", 0)
+          .attr("y2", categories * dimension + 6)
+          .attr("marker-end", "url(#arrowhead)")
+          .style("stroke", "var(--mdc-theme-text-primary-on-background)")
+          .style("stroke-width", 1)
+          .style("stroke-linecap", "square");
+
+        legendGroup
+          .append("text")
+          .text("Inward")
+          .attr("transform", "translate(" + dimension * 3 / 2 + ", -2) rotate(180)")
+          .append("tspan")
+          .text("migrations")
+          .attr("x", 0)
+          .attr("y", "1em")
+
+        legendGroup
+          .append("text")
+          .text("Outward")
+          .attr("transform", "translate(-2," + dimension * 3 / 2 + ") rotate(90)")
+          .append("tspan")
+          .text("migrations")
+          .attr("x", 0)
+          .attr("y", "1em")
+
+        legendGroup.selectAll("text, tspan")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "before-edge")
+          .attr("class", "mdc-typography--body1")
+          .style("fill", "var(--mdc-theme-text-primary-on-background)")
+          .style("font-size", 12 / (Math.pow(svgZoom, 0.7)));
+
+        const legendWidth = Math.pow(2 * Math.pow(3 * dimension + 8, 2), 0.5);
+        const legendHeight = Math.pow(2 * Math.pow(3 * dimension, 2), 0.5);
+
+        legendGroup
+          .attr(
+            "transform",
+            "translate(" + (width - margin - legendWidth / 2) + "," + (legendHeight + margin) + ") rotate(-135)"
+          )
+
+        window.onresize = function() {
+          svgZoom = svg.node().getBoundingClientRect().height / height;
+          document.querySelectorAll(".vis-legend text").forEach(element => {
+            element.style.fontSize = 12 / (Math.pow(svgZoom, 0.7));
+          });
+          document.querySelectorAll(".vis-legend text tspan").forEach(element => {
+            element.style.fontSize = 12 / (Math.pow(svgZoom, 0.7));
+          });
+        }
+
+        // Add zoom behaviour ------------------------------------------------------------------------------------------
+        const zoom = d3.zoom()
+          .scaleExtent([1, 4])
+          .translateExtent(geoGenerator.bounds(dsdData))
+          .on("zoom", function() {
+            mapGroup.attr("transform", d3.event.transform);
+
+            d3.select("#hovered-dsd")
+              .style("stroke-width", 0.5 / d3.event.transform.k);
+
+            d3.select("#selected-dsd")
+              .style("stroke-width", 1 / d3.event.transform.k);
+          });
+
+        svg.call(zoom)
+          .on("dblclick.zoom", null)
+          .on("wheel.zoom", null);
+
+        // Add mouse hover behaviour for each DSD ----------------------------------------------------------------------
+        mapGroup.selectAll("path")
+          .on("mouseover", function() {
+            if (this.id != "selected-dsd") {
+              d3.select(this)
+                .raise()
+                .attr("id", "hovered-dsd")
+                .style("stroke", "var(--mdc-theme-text-primary-on-background)")
+                .style("stroke-width", 0.5 / d3.zoomTransform(this).k)
+                .style("stroke-linecap", "round");
+            }
+
+            d3.select("selected-dsd").raise();
+          })
+          .on("mouseout", function() {
+            if (this.id != "selected-dsd") {
+              d3.select(this)
+                .attr("id", null)
+                .style("stroke", "none");
+            }
+
+            d3.select("#selected-dsd").raise();
+          });
+
+        // Add mouse click behaviour for each DSD ----------------------------------------------------------------------
+        mapGroup.selectAll("path")
+          .on("click", function(s) {
+            d3.event.stopPropagation();
+
+            d3.select("#selected-dsd")
+              .attr("id", null);
+
+            mapGroup.selectAll("path")
+              .transition()
+              .duration(750)
+              .style("fill", d => colorScale(d.properties.code_4, s.properties.code_4))
+              .style("stroke", "none");
+
+            d3.select(this)
+              .raise()
+              .attr("id", "selected-dsd")
+              .transition()
+              .duration(750)
+              .style("fill", d => colorScale(d.properties.code_4, s.properties.code_4))
+              .style("stroke", "var(--mdc-theme-text-primary-on-background)")
+              .style("stroke-width", 1 / d3.zoomTransform(this).k)
+              .style("stroke-linecap", "round");
+
+            d3.select("#internal-migration-scope")
+              .text("Scope: " + s.properties.dsd_name + " DSD")
+
+            popovers(s.properties.code_4);
+          });
+
+        // Add mouse double click behaviour ----------------------------------------------------------------------------
+        svg.on("dblclick", function() {
+          d3.event.stopPropagation();
+
+          d3.select("#internal-migration-scope")
+            .text("Scope: Entire Country")
+
+          d3.select("#selected-dsd")
+            .attr("id", null);
+
+          mapGroup.selectAll("path")
+            .transition()
+            .duration(750)
+            .style("fill", d => colorScale(d.properties.code_4, "country"))
+            .style("stroke", "none");
+
+          svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+
+          popovers("country");
+        })
+
+        // Add popovers for each DSD -----------------------------------------------------------------------------------
+        mapGroup.selectAll("path")
+          .attr("popover", true)
+
+        const popoverInstances = tippy('[popover=true]', {
+          content: "placeholder",
+          allowHTML: true,
+          theme: "custom",
+          maxWidth: "none",
+          arrow: false,
+          placement: "right",
+        });
+
+        popoverInstances.forEach(popover => {
+          popover.popper.querySelector(".tippy-box").classList.add("mdc-elevation--z1");
+        });
+
+        function popovers(scope) {
+          popoverInstances.forEach(popover => popover.setContent(element => {
+            const eleData = d3.select(element).data()[0].properties;
+            const dsdCode = eleData.code_4;
+            let migIn;
+            let migOut;
+
+            const contentHead = "<h3 class='mdc-typography--subtitle2'>" + eleData.prov_name + " Province</h3>" +
+              "<h3 class='mdc-typography--subtitle2'>" + eleData.dist_name + " District</h3>" +
+              "<h2 class='mdc-typography--headline6'>" + eleData.dsd_name + "</h2>";
+
+            if (scope == "country") {
+              migIn = migData[dsdCode] ? d3.sum(d3.values(migData[dsdCode].migrations_in)) : 0;
+              migOut = migData[dsdCode] ? d3.sum(d3.values(migData[dsdCode].migrations_out)) : 0;
+            } else {
+              if (scope == dsdCode) {
+                migIn = migData[dsdCode] ? d3.sum(d3.values(migData[dsdCode].migrations_in)) : 0;
+                migOut = migData[dsdCode] ? d3.sum(d3.values(migData[dsdCode].migrations_out)) : 0;
+              } else {
+                migIn = migData[scope].migrations_in[dsdCode] ? migData[scope].migrations_in[dsdCode] : 0;
+                migOut = migData[scope].migrations_out[dsdCode] ? migData[scope].migrations_out[dsdCode] : 0;
+              }
+            }
+            const contentBody = "<p class='mdc-typography--body2'>" + d3.format(",")(migIn) + " inward migrations</p>" +
+              "<p class='mdc-typography--body2'>" + d3.format(",")(migOut) + " outward migrations</p>";
+
+            return contentHead + "<div class='popover-divider'></div>" + contentBody;
+          }));
+        }
+
+        popovers("country");
+      })
+  </script>
+</body>
+
+</html>

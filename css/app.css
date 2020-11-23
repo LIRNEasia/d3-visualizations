@@ -1,0 +1,123 @@
+/* Define theme variables before importing any MDC Web component styles */
+:root {
+  --mdc-theme-primary: #cc3d24;
+  --mdc-theme-secondary: #444751;
+  --mdc-theme-background: #f5f5f5;
+  --mdc-theme-surface: #ffffff;
+  --mdc-theme-on-primary: #ffffff;
+  --mdc-theme-on-secondary: #ffffff;
+  --mdc-theme-on-surface: #231f20;
+  --page-max: 1200px;
+  --content-max: 900px;
+}
+
+/* General */
+.mdc-top-app-bar--short-collapsed.mdc-top-app-bar--short-has-action-item {
+  width: 175px;
+}
+
+body {
+  padding: 32px 32px 32px;
+  background: var(--mdc-theme-background);
+  /* color: var(--mdc-theme-on-surface); */
+}
+
+main {
+  max-width: var(--pageMax);
+  margin: 0 -8px;
+}
+
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: var(--mdc-theme-text-primary-on-background);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-word-break: break-all;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+p {
+  color: var(--mdc-theme-text-primary-on-background);
+}
+
+#internal-migration-scope {
+  text-align: center;
+  color: var(--mdc-theme-text-primary-on-background);
+  margin: 0;
+}
+
+#algorithmic-bias-perspective {
+  color: var(--mdc-theme-text-primary-on-background);
+  margin: 0;
+}
+
+.chip-center {
+  text-align: center;
+  margin: auto;
+}
+
+/* Home cards */
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.card {
+  flex: 1;
+  flex-basis: 400px;
+  margin: 8px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-content h2 {
+  color: var(--mdc-theme-text-primary-on-background);
+  margin: 0 0 16px 0;
+}
+
+.card-content h3 {
+  color: var(--mdc-theme-text-secondary-on-background);
+  margin: 0;
+}
+
+/* Popovers */
+svg :focus {
+  outline: none;
+}
+
+.tippy-box[data-theme~="custom"] {
+  background-color: var(--mdc-theme-surface);
+}
+
+.tippy-box h2 {
+  color: var(--mdc-theme-text-primary-on-background);
+  margin: 0;
+}
+
+.tippy-box h3 {
+  color: var(--mdc-theme-text-secondary-on-background);
+  margin: 0;
+}
+
+.popover-divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
+  margin: 4px 0 8px 0;
+}
+
+.tippy-box p {
+  color: var(--mdc-theme-text-primary-on-background);
+  margin: 0;
+}
