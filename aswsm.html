@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>LIRNEasia · Visualizations</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Viren Dias">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body class="mdc-typography">
+  <header class="mdc-top-app-bar mdc-top-app-bar--short mdc-top-app-bar--short-collapsed mdc-top-app-bar--short-has-action-item" data-mdc-auto-init="MDCTopAppBar" style="top: 0px;">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <a href="./" class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon">home</a>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+          <a href="https://lirneasia.net" target="_blank" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">LIRNEasia</span>
+          </a>
+        </section>
+    </div>
+  </header>
+  <main>
+    <h1 class="mdc-typography--headline2">AWSM</h1>
+    <div class="container">
+      <div id="socioeconomic-index-vis"></div>
+      <p class="mdc-typography--body1">This is a A choropleth map of AWSM
+      </p>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+
+  <script>
+    window.mdc.autoInit();
+
+    // Render the visualization ----------------------------------------------------------------------------------------
+    Promise.all([
+        d3.json("dsd_topology.json"),
+        d3.csv("merged_topology_dsd.csv", d3.autoType)
+      ])
+      .then(function([geoData, seiData]) {
+        // Initialize the canvas ---------------------------------------------------------------------------------------
+        const width = 600;
+        const height = 900;
+        const margin = 20;
+
+        d3.select("#socioeconomic-index-vis")
+          .append("svg")
+          .style("max-height", "100vh")
+          .style("max-width", "100vw")
+          .attr("preserveAspectRatio", "xMidYMin meet")
+          .attr("viewBox", [0, 0, width, height])
+          .append("g");
+
+        const svg = d3.select("#socioeconomic-index-vis")
+          .select("svg");
+
+        const mapGroup = d3.select("#socioeconomic-index-vis")
+          .select("svg")
+          .select("g");
+
+        svgZoom = svg.node().getBoundingClientRect().height / height;
+
+        // Parse the data ----------------------------------------------------------------------------------------------
+        const gndData = topojson.feature(geoData, geoData.objects.gnds);
+
+        gndData.features.forEach(gnd => {
+          gndCode = parseInt(gnd.properties.code_7);
+          if (seiData.find(d => d.code_7 === gndCode)) {
+            gnd.properties.pc_1 = seiData.find(d => d.code_7 === gndCode).pc_1;
+          } else {
+            gnd.properties.pc_1 = null;
+          }
+          return gnd;
+        });
+
+        // Render the base map -----------------------------------------------------------------------------------------
+        const geoProjection = d3.geoMercator()
+          .fitExtent([
+            [margin, margin],
+            [width - margin, height - margin]
+          ], gndData);
+
+        const geoGenerator = d3.geoPath()
+          .projection(geoProjection);
+
+        mapGroup.selectAll("path")
+          .data(gndData.features)
+          .enter()
+          .append("path")
+          .attr("d", geoGenerator);
+
+        // Render the map colors ---------------------------------------------------------------------------------------
+        const colorScale = d3.scaleSequential(d3.extent(seiData, d => d.pc_1), d3.interpolateYlGn);
+
+        mapGroup.selectAll("path")
+          .style("fill", d => colorScale(d.properties.pc_1))
+          .style("stroke", "none");
+
+        // Render the legend -------------------------------------------------------------------------------------------
+        svg.append("defs")
+          .append("linearGradient")
+          .attr("id", "socioeconomic-index-gradient")
+          .attr("x1", 0)
+          .attr("x2", 0)
+          .attr("y1", 0)
+          .attr("y2", 1);
+
+        for (var i = 0; i <= 100; i++) {
+          svg.select("defs")
+            .select("linearGradient")
+            .append("stop")
+            .attr("offset", i + "%")
+            .attr("stop-color", d3.interpolateYlGn((100 - i) / 100))
+        };
+
+        svg.append("rect")
+          .attr("x", width - margin - 40)
+          .attr("y", margin)
+          .style("width", 10)
+          .style("height", 200)
+          .style("fill", "url(#socioeconomic-index-gradient)");
+
+        const legendAxis = svg.append("g")
+          .attr("transform", "translate(" + (width - margin - 25) + "," + margin + ")")
+          .call(
+            d3.axisRight(
+              d3.scaleLinear()
+              .domain([d3.max(seiData, d => d.pc_1), d3.min(seiData, d => d.pc_1)])
+              .range([0, 200])
+            )
+            .tickValues([d3.max(seiData, d => d.pc_1), 0, d3.min(seiData, d => d.pc_1)])
+            .tickFormat(d3.format(".0f"))
+            .tickSize(10)
+          );
+
+        legendAxis.selectAll("text")
+          .style("color", "var(--mdc-theme-text-primary-on-background)")
+          .style("font-size", 12 / (Math.pow(svgZoom, 0.7)))
+
+        legendAxis.selectAll("path, line")
+          .style("color", "var(--mdc-theme-text-primary-on-background)")
+          .style("stroke-width", 1);
+
+        window.onresize = function() {
+          svgZoom = svg.node().getBoundingClientRect().height / height;
+          legendAxis.selectAll("text").style("font-size", 12 / (Math.pow(svgZoom, 0.7)));
+        }
+
+        // Add zoom behaviour ------------------------------------------------------------------------------------------
+        const zoom = d3.zoom()
+          .scaleExtent([1, 4])
+          .translateExtent(geoGenerator.bounds(gndData))
+          .on("zoom", function() {
+            mapGroup
+              .attr("transform", d3.event.transform)
+              .select("#hovered-gnd")
+              .style("stroke-width", 0.5 / d3.event.transform.k);
+          });
+
+        svg.on("dblclick", function() {
+          d3.event.stopPropagation();
+          svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+        });
+
+        svg.call(zoom)
+          .on("dblclick.zoom", null)
+          .on("wheel.zoom", null);
+
+        // Add mouse hover behaviour for each GND ----------------------------------------------------------------------
+        mapGroup.selectAll("path")
+          .on("mouseover", function() {
+            d3.select(this)
+              .raise()
+              .attr("id", "hovered-gnd")
+              .style("stroke", "var(--mdc-theme-text-primary-on-background)")
+              .style("stroke-width", 0.5 / d3.zoomTransform(this).k);
+          })
+          .on("mouseout", function() {
+            d3.select(this)
+              .attr("id", null)
+              .style("stroke", "none");
+          });
+
+        // Add tooltips for each GND -----------------------------------------------------------------------------------
+        mapGroup.selectAll("path")
+          .attr("popover", true)
+
+        const popoverInstances = tippy('[popover=true]', {
+          content: "placeholder",
+          allowHTML: true,
+          theme: "custom",
+          maxWidth: "none",
+          arrow: false,
+          placement: "right",
+        });
+        popoverInstances.forEach(popover => {
+          popover.popper.querySelector(".tippy-box").classList.add("mdc-elevation--z1");
+
+          popover.setContent(element => {
+            const eleData = d3.select(element).data()[0].properties;
+
+            const contentHead = "<h3 class='mdc-typography--subtitle2'>" + eleData.prov_name + " Province</h3>" +
+              "<h3 class='mdc-typography--subtitle2'>" + eleData.dist_name + " District</h3>" +
+              "<h3 class='mdc-typography--subtitle2'>" + eleData.dsd_name + " DSD</h3>" +
+              "<h2 class='mdc-typography--headline6'>" + eleData.gnd_name + "</h2>";
+
+            const contentBody = "<p class='mdc-typography--body2'>" + parseFloat(eleData.pc_1).toFixed(2) +
+              " socioeconomic index</p>";
+
+            return contentHead + "<div class='popover-divider'></div>" + contentBody;
+          });
+        });
+      });
+  </script>
+
+</body>
+
+</html>
