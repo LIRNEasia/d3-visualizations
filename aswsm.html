@@ -45,7 +45,7 @@
     // Render the visualization ----------------------------------------------------------------------------------------
     Promise.all([
         d3.json("./resources/dsd_topology.json"),
-        d3.csv("./resources/merged_topology_dsd.csv", d3.autoType)
+        d3.csv("./resources/merged_topology_dsd.csv")
       ])
       .then(function([geoData, seiData]) {
         // Initialize the canvas ---------------------------------------------------------------------------------------
