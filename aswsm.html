@@ -44,8 +44,8 @@
 
     // Render the visualization ----------------------------------------------------------------------------------------
     Promise.all([
-        d3.json("dsd_topology.json"),
-        d3.csv("merged_topology_dsd.csv", d3.autoType)
+        d3.json("./resources/dsd_topology.json"),
+        d3.csv("./resources/merged_topology_dsd.csv", d3.autoType)
       ])
       .then(function([geoData, seiData]) {
         // Initialize the canvas ---------------------------------------------------------------------------------------
@@ -71,16 +71,16 @@
         svgZoom = svg.node().getBoundingClientRect().height / height;
 
         // Parse the data ----------------------------------------------------------------------------------------------
-        const gndData = topojson.feature(geoData, geoData.objects.gnds);
+        const dsdData = topojson.feature(geoData, geoData.objects.dsds);
 
-        gndData.features.forEach(gnd => {
-          gndCode = parseInt(gnd.properties.code_7);
-          if (seiData.find(d => d.code_7 === gndCode)) {
-            gnd.properties.pc_1 = seiData.find(d => d.code_7 === gndCode).pc_1;
+        dsdData.features.forEach(dsd => {
+          dsdCode = parseInt(dsd.properties.code_4);
+          if (seiData.find(d => d.code_4 === id)) {
+            dsd.properties.Poor = seiData.find(d => d.code_4 === id).Poor;
           } else {
-            gnd.properties.pc_1 = null;
+            dsd.properties.Poor = null;
           }
-          return gnd;
+          return dsd;
         });
 
         // Render the base map -----------------------------------------------------------------------------------------
@@ -88,22 +88,22 @@
           .fitExtent([
             [margin, margin],
             [width - margin, height - margin]
-          ], gndData);
+          ], dsdData);
 
         const geoGenerator = d3.geoPath()
           .projection(geoProjection);
 
         mapGroup.selectAll("path")
-          .data(gndData.features)
+          .data(dsdData.features)
           .enter()
           .append("path")
           .attr("d", geoGenerator);
 
         // Render the map colors ---------------------------------------------------------------------------------------
-        const colorScale = d3.scaleSequential(d3.extent(seiData, d => d.pc_1), d3.interpolateYlGn);
+        const colorScale = d3.scaleSequential(d3.extent(seiData, d => d.Poor), d3.interpolateYlGn);
 
         mapGroup.selectAll("path")
-          .style("fill", d => colorScale(d.properties.pc_1))
+          .style("fill", d => colorScale(d.properties.Poor))
           .style("stroke", "none");
 
         // Render the legend -------------------------------------------------------------------------------------------
