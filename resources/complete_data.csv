@@ -1,0 +1,332 @@
+,id_x,code_4,dsd_name_x,dsd_wrong_name,Poor,Severely Poor,Transient,Vulnerable
+0,,7109,Medawachchiya,Medawachchiya,1341.0,400.0,781.0,871.0
+1,,7103,Padaviya,Padaviya,662.0,221.0,395.0,443.0
+2,,9124,Pelmadulla,Pelmadulla,5975.0,3766.0,2358.0,2075.0
+3,,7106,Kebithigollewa,Kebithigollewa,685.0,278.0,408.0,407.0
+4,,9121,Opanayaka,Opanayaka,1399.0,944.0,603.0,558.0
+5,,9115,Imbulpe,Imbulpe,2571.0,1816.0,1075.0,930.0
+6,,9118,Balangoda,Balangoda,2113.0,1229.0,1037.0,863.0
+7,,9112,Ratnapura,Ratnapura,3797.0,2259.0,1748.0,1268.0
+8,,9109,Kiriella,Kiriella,1869.0,875.0,951.0,792.0
+9,,9103,Eheliyagoda,Eheliyagoda,2978.0,1461.0,1517.0,1118.0
+10,,3109,Karandeniya,Karandeniya,2226.0,876.0,1845.0,1408.0
+11,,9106,Kuruwita,Kuruvita,5670,2782,2545,1972
+12,,3103,Bentota,Benthos,1718,745,1077,874
+13,,5124,Kattankudy,Kattankudy,1360.0,682.0,634.0,678.0
+14,,3106,Balapitiya,Balapitiya,1347.0,962.0,460.0,469.0
+15,,7139,Nochchiyagama,Nochchiyagama,1639.0,419.0,1088.0,1296.0
+16,,5121,Manmunai West,Manmunai West,2145.0,858.0,1089.0,864.0
+17,,7142,Rajanganaya,Rajanganaya,1063.0,315.0,679.0,782.0
+18,,5115,Eravur Town,Eravur Town,1809.0,889.0,759.0,974.0
+19,,7136,Nachchadoowa,Nachchadoowa,835.0,221.0,522.0,598.0
+20,,5118,Manmunai North,Manmunai North,4171.0,1419.0,1726.0,1840.0
+21,,9151,Kolonna,Kolonna,2902.0,1681.0,1279.0,983.0
+22,,5112,Eravur Pattu,Eravur Pattu,4454.0,1998.0,1996.0,1994.0
+23,,7133,Nuwaragam Palatha East,Nuwaragam Palatha East,1249.0,358.0,812.0,992.0
+24,,7127,Galenbidunuwawe,Galenbindunuwewa,1843,519,1163,1342
+25,,9148,Embilipitiya,Embilipitiya,8187.0,3040.0,4345.0,3472.0
+26,,5109,Koralai Pattu (Valach.),Koralai Pattu (Valachchenai),1822,732,831,733
+27,,7130,Mihintale,Mihinthale,1190,339,600,832
+28,,5110,Koralai Pattu South,Koralai Pattu South (Kiran),2286,1139,867,862
+29,,5103,Koralai Pattu North,Koralai Pattu North,2615.0,1111.0,983.0,962.0
+30,,7124,Horowpothana,Horowpothana,1220.0,399.0,748.0,873.0
+31,,5104,Koralai Pattu Central,Koralaipattu Central,1206,480,621,724
+32,,6115,Kotavehera,Kotavehera,1037.0,365.0,550.0,430.0
+33,,9145,Weligepola,Weligepola,2277.0,1115.0,1065.0,827.0
+34,,5106,Korale Pattu  West,Koralai Pattu West (Oddamavadi),1112,541,428,633
+35,,9139,Kahawaththa,Kahawatta,2702,2296,951,785
+36,,6118,Rasnayakapura,Rasnayakapura,824.0,291.0,547.0,412.0
+37,,7121,Kahatagasdigiliya,Kahatagasdigiliya,1356.0,393.0,878.0,938.0
+38,,6112,Ambanpola,Ambanpola,936.0,347.0,576.0,453.0
+39,,9142,Godakawela,Godakawela,4424.0,3165.0,1647.0,1533.0
+40,,8133,Bandarawela,Bandarawela,2294.0,1779.0,285.0,678.0
+41,,7115,Nuwaragam Palatha Central,Nuwaragam Palatha Central,1854.0,568.0,1037.0,1328.0
+42,,3139,Galle Four Gravets,Galle Four Gravets,2713.0,822.0,2037.0,1567.0
+43,,9136,Nivithigala,Nivithigala,3854.0,2920.0,1385.0,1093.0
+44,,8127,Uva Paranagama,Uva-Paranagama,3786,2252,609,1069
+45,,7118,Rambewa,Rambewa,1405.0,480.0,743.0,881.0
+46,,3142,Bope-Poddala,Bope-Poddala,1358.0,726.0,706.0,557.0
+47,,6109,Ehetuwewa,Ehetuwewa,936.0,309.0,596.0,519.0
+48,,3136,Hikkaduwa,Hikkaduwa,1114.0,654.0,664.0,487.0
+49,,8130,Welimada,Welimada,2519.0,2269.0,184.0,524.0
+50,,7112,Maha Vilachchiya,Mahavilachchiya,595,190,441,458
+51,,6103,Giribawa,Giribawa,1442.0,508.0,785.0,724.0
+52,,9133,Kalawana,Kalawana,2514.0,1578.0,1109.0,887.0
+53,,8124,Hali Ela,Hali-Ela,6773,6927,1271,1921
+54,,9127,Elapatha,Elapatha,2732.0,1514.0,1195.0,1135.0
+55,,6106,Galgamuwa,Galgamuwa,2204.0,890.0,935.0,962.0
+56,,8119,Lunugala,Lunugala,1593.0,2169.0,197.0,383.0
+57,,3133,Ambalangoda,Ambalangoda,1649.0,806.0,1155.0,858.0
+58,,3134,Gonapeenuwala,Gonapeenuwala,634.0,388.0,290.0,257.0
+59,,9130,Ayagama,Ayagama,1976.0,1302.0,951.0,643.0
+60,,8121,Badulla,Badulla,3474.0,2254.0,766.0,1137.0
+61,,3127,Baddegama,Baddegama,1505.0,674.0,850.0,696.0
+62,,8115,Soranathota,Soranathota,2292.0,1918.0,426.0,633.0
+63,,3130,Welivitiya-Divithura,Welivitiya-Divithura,1172.0,611.0,712.0,595.0
+64,,7163,Galnewa,Galnewa,1141.0,352.0,764.0,820.0
+65,,8118,Passara,Passara,2123.0,3204.0,251.0,439.0
+66,,3124,Nagoda,Nagoda,2469.0,1335.0,1265.0,1128.0
+67,,2115,Panvila,Panvila,1180.0,1439.0,389.0,472.0
+68,,8112,Kandaketiya,Kandaketiya,2626.0,1546.0,593.0,883.0
+69,,7166,Palagala,Palagala,1214.0,395.0,853.0,964.0
+70,,2118,Udadumbara,Udadumbara,1320.0,840.0,640.0,679.0
+71,,7160,Ipalogama,Ipalogama,1249.0,403.0,760.0,929.0
+72,,3121,Neluwa,Neluwa,1043.0,471.0,733.0,575.0
+73,,2112,Pathadumbara,Pathadumbara,2040.0,863.0,1186.0,1418.0
+74,,4133,Nallur,Nallur,1841.0,1099.0,737.0,820.0
+75,,8109,Meegahakivula,Meegahakivula,1971.0,1402.0,605.0,638.0
+76,,3115,Niyagama,Niyagama,1306.0,592.0,735.0,602.0
+77,,5136,Manmunai S. and Eruvilpattu,Manmunai South&Eruvil Pattu,2798,1250,1331,1178
+78,,7157,Palugaswewa,Palugaswewa,524.0,149.0,412.0,379.0
+79,,4127,Vadamaradchy North,Vadamaradchi North (Point Pedro),2251,1370,799,1015
+80,,8103,Mahiyanganaya,Mahiyanganaya,6213.0,2234.0,2664.0,2574.0
+81,,6148,Paduwasnuwara East, Katupotha (Paduwasnuwara East),1013,430,548,551
+82,,3118,Thawalama,Thawalama,1306.0,771.0,639.0,687.0
+83,,7151,Thirappane,Thirappane,702.0,294.0,505.0,543.0
+84,,2109,Akurana,Akurana,2083.0,905.0,1315.0,1362.0
+85,,6149,Bamunakotuwa,Bamunakotuwa,1178.0,538.0,560.0,636.0
+86,,4130,Thenmaradchi (Chavakachcheri),Thenmaradchi (Chavakachcheri),2782.0,1726.0,1016.0,1172.0
+87,,8106,Rideemaliyadda,Rideemaliyadda,4164.0,1305.0,3788.0,2331.0
+88,,3112,Elpitiya,Elpitiya,2727.0,1257.0,1719.0,1346.0
+89,,5133,Porativu Pattu,Porativu Pattu,2644.0,1054.0,1239.0,1112.0
+90,,2103,Thumpane,Thumpane,874.0,421.0,394.0,501.0
+91,,7154,Kekirawa,Kekirawa,2304.0,555.0,1437.0,1710.0
+92,,4124,Vadamaradchy East,Vadamaradchi East (Maruthnkerny),628,463,263,302
+93,,5127,Manmunai P. (Araipattai),Manmunai Pattu (Arayampathy,1816,680,975,786
+94,,6145,Paduwasnuwara West,Paduwasnuwara West,1999.0,716.0,988.0,1117.0
+95,,7148,Thalawa,Thalawa,1804.0,605.0,962.0,1262.0
+96,,2106,Poojapitiya,Poojapitiya,1713.0,732.0,1022.0,1159.0
+97,,6139,Kobeigane,Kobeigane,1268.0,492.0,705.0,686.0
+98,,5130,Manmunai South - West,Manmunai South-West,1511,537,788,662
+99,,4121,Karaveddy (Vadamaradchi South-West),"Vadamaradchy South-West, Karaveddy",2104,1422,657,906
+100,,6142,Bingiriya,Bingiriya,2074.0,858.0,1157.0,963.0
+101,,7145,Thambuttegama,Thambuttegama,1243.0,328.0,976.0,949.0
+102,,4115,Valikamam South (Uduvil),Valikamam South (Uduvil),2715.0,1969.0,874.0,1121.0
+103,,6136,Wariyapola,Wariyapola,2226.0,966.0,1101.0,1188.0
+104,,7203,Hingurakgoda,Hingurakgoda,3966.0,1545.0,947.0,1018.0
+105,,4118,Kopay (Valikamam East),Valikamam East ,3965,2429,1272,1811
+106,,2148,Delthota,Delthota,1685.0,1182.0,839.0,996.0
+107,,7206,Medirigiriya,Medirigiriya,3865.0,1145.0,1402.0,1313.0
+108,,4112,Valikamam North (Tellipallai),Valikamam North (Tellipallai),2417.0,1820.0,752.0,1221.0
+109,,3151,Imaduwa,Imaduwa,1895.0,743.0,1285.0,974.0
+110,,6133,Ganewatta,Ganewatta,1917.0,834.0,1003.0,943.0
+111,,6127,Polpithigama,Polpithigama,3532.0,1347.0,1850.0,1698.0
+112,,3154,Habaraduwa,Habaraduwa,2599.0,1229.0,1389.0,1148.0
+113,,9221,Ruwanwella,Ruwanwella,2120.0,1220.0,601.0,940.0
+114,,2145,Pathahewaheta,Pathahewaheta,2557.0,1142.0,1226.0,1620.0
+115,,4109,Valikamam South-West (Sandilipay),Valikamam South-West (Sandilipay),2838.0,2136.0,854.0,1319.0
+116,,9215,Galigamuwa,Galigamuwa,4435.0,2284.0,2142.0,2431.0
+117,,3148,Yakkalamulla,Yakkalamulla,1990.0,1155.0,971.0,933.0
+118,,6130,Ibbagamuwa,Ibbagamuwa,2726.0,1065.0,1804.0,1524.0
+119,,2139,Udunuwara,Udunuwara,3443.0,1270.0,2026.0,2193.0
+120,,4103,Kayts (Island North),Island North (Kayts),723,530,260,271
+121,,9218,Warakapola,Warakapola,5985.0,3204.0,3255.0,3194.0
+122,,6124,Maho,Mahaoya,719,227,368,359
+123,,4104,Karainagar,Karainagar,908.0,684.0,328.0,205.0
+124,,2142,Doluwa,Doluwa,2308.0,1707.0,1241.0,1301.0
+125,,9212,Kegalle,Kegalle,3546.0,1996.0,1763.0,1798.0
+126,,4106,Valikamam West (Chankanai),Valikamam West (Chankanai),2890.0,1779.0,984.0,1066.0
+127,,3145,Akmeemana,Akmeemana,2161.0,1140.0,1154.0,961.0
+128,,2136,Yatinuwara,Yatinuwara,2865.0,1443.0,1756.0,1718.0
+129,,8139,Haputhale,Haputale,2704,2621,530,785
+130,,3203,Pitabeddara,Pitabeddara,1453.0,838.0,1011.0,819.0
+131,,6121,Nikaweratiya,Nikaweratiya,1469.0,524.0,797.0,747.0
+132,,8142,Haldummulla,Haldummulla,2427.0,2999.0,842.0,795.0
+133,,9209,Aranayaka,Aranayaka,4514.0,2370.0,2244.0,2304.0
+134,,3206,Kotapola,Kotapola,2424.0,2016.0,1101.0,933.0
+135,,2133,Harispattuwa,Harispattuwa,2886.0,1122.0,1802.0,2020.0
+136,,8136,Ella,Ella,3356.0,3108.0,731.0,992.0
+137,,9203,Rambukkana,Rambukkana,5090.0,2523.0,2473.0,2607.0
+138,,6181,Narammala,Narammala,1710.0,824.0,943.0,965.0
+139,,2134,Hatharaliyadda,Hatharaliyadda,1060.0,567.0,550.0,598.0
+140,,5221,Kalmunai Tamil,Kalmunayi north,1385,429,471,671
+141,,2127,Kundasale,Kundasale,3869.0,1591.0,2636.0,2608.0
+142,,6175,Udubaddawa,Udubaddawa,1896.0,786.0,956.0,1000.0
+143,,9206,Mawanella,Mawanella,4372.0,2180.0,1049.0,2000.0
+144,,5215,Ampara,Ampara,1512.0,531.0,609.0,706.0
+145,,5216,Navithanveli,Navithanvelly,1384,556,656,679
+146,,2130,Kandy Four Gravets & Gangawata Korale,Gangawatakorale,2923,1103,1875,2128
+147,,6178,Pannala,Pannala,4147.0,1863.0,2005.0,1985.0
+148,,5218,Samanthurai,Samanthurai,2957.0,841.0,1893.0,1644.0
+149,,2124,Medadumbara,Medadumbara,2430.0,1986.0,1186.0,1304.0
+150,,6172,Kuliyapitiya West,Kuliyapitiya West,2062.0,1087.0,941.0,1010.0
+151,,5212,Uhana,Uhana,1854.0,711.0,750.0,868.0
+152,,2121,Minipe,Minipe,2592.0,1128.0,1445.0,1841.0
+153,,6169,Kuliyapitiya East,Kuliyapitiya East,2193.0,896.0,1134.0,1135.0
+154,,5209,Mahaoya,Mahaoya,719.0,227.0,368.0,359.0
+155,,6163,Rideegama,Rideegama,4029.0,1823.0,2120.0,2102.0
+156,,5203,Dehiattakandiya,Dehiattakandiya,1952.0,573.0,726.0,897.0
+157,,6166,Weerambugedara,Weerambugedara,1083.0,462.0,574.0,548.0
+158,,4139,Island South (Velanai),"Island South ,Velanai",996,721,377,339
+159,,5206,Padiyathalawa,Padiyathalawa,199.0,62.0,84.0,87.0
+160,,6160,Mawathagama,Mawathagama,2640.0,1380.0,1285.0,1257.0
+161,,4142,Delft,Delft,248.0,165.0,86.0,107.0
+162,,4136,Jaffna,Jaffna,2062.0,1240.0,727.0,816.0
+163,,6157,Mallawapitiya,Mallawapitiya,2231.0,994.0,1057.0,1144.0
+164,,6151,Maspotha,Maspotha,980.0,484.0,537.0,521.0
+165,,3236,Thihagoda,Thihagoda,976.0,416.0,623.0,561.0
+166,,6154,Kurunegala,Kurunegala,2114.0,975.0,882.0,1067.0
+167,,5251,Lahugala,Lahugala,549.0,232.0,144.0,237.0
+168,,6212,Nawagattegama,Nawagattegama,665.0,183.0,422.0,386.0
+169,,7215,Thamankaduwa,Thamankaduwa,3229.0,1293.0,841.0,909.0
+170,,3233,Kirinda Puhulwella,Kirinda Puhulwella,531.0,195.0,321.0,294.0
+171,,8227,Katharagama,Katharagama,1032.0,679.0,390.0,425.0
+172,,7218,Elahera,Elahera,2726.0,919.0,751.0,748.0
+173,,3227,Kamburupitiya,Kamburupitiya,1070.0,467.0,716.0,665.0
+174,,6209,Karuwalagaswewa,Karuwalagaswewa,1003.0,347.0,695.0,597.0
+175,,5248,Pothuvil,Pothuvil,2933.0,1310.0,1149.0,1281.0
+176,,8230,Thanamalwila,Thanamalvila,1361,661,748,885
+177,,7212,Dimbulagala,Dimbulagala,3752.0,1145.0,1791.0,1374.0
+178,,9233,Deraniyagala,Deraniyagala,1213.0,1498.0,154.0,327.0
+179,,1124,Sri Jayawardanapura Kotte,Sri Jayawardanapura Kotte,692.0,220.0,690.0,497.0
+180,,6203,Kalpitiya,Kalpitiya,2833.0,890.0,1674.0,1553.0
+181,,3230,Hakmana,Hakmana,873.0,387.0,636.0,652.0
+182,,8224,Buttala,Buttala,2797.0,1711.0,1036.0,1363.0
+183,,2157,Pasbage Korale,Pasbage Korale,2447.0,2051.0,1209.0,1417.0
+184,,9227,Yatiyanthota,Yatiyanthota,3951.0,3251.0,1354.0,1714.0
+185,,3224,Malimbada,Malimbada,999.0,400.0,625.0,605.0
+186,,5245,Thirukkovil,Thirukkovil,2113.0,880.0,793.0,885.0
+187,,2151,Udapalatha,Udapalatha,3705.0,2650.0,1766.0,2055.0
+188,,6206,Vanathavilluwa,Vanathavilluwa,845.0,278.0,487.0,399.0
+189,,7209,Lankapura,Lankapura,792.0,132.0,603.0,361.0
+190,,9230,Dehiovita,Dehiovita,1006.0,1217.0,121.0,235.0
+191,,1121,Maharagama,Maharagama,895.0,220.0,851.0,644.0
+192,,7210,Welikanda,Welikanda,1571.0,346.0,1154.0,677.0
+193,,5239,Alayadiwembu,Alayadiwembu,1543.0,685.0,693.0,644.0
+194,,8221,Wellawaya,Wellawaya,2329.0,1409.0,964.0,1191.0
+195,,2154,Ganga Ihala Korale,Ganga Ihala Korale,2369.0,1518.0,1294.0,1452.0
+196,,9224,Bulathkohupitiya,Bulathkohupitiya,2746.0,2375.0,1085.0,1235.0
+197,,1115,Seethawaka,Hanwella,1967,726,1455,1197
+198,,3221,Welipitiya,Welipitiya,1825.0,863.0,1164.0,975.0
+199,,8215,Moneragala,Moneragala,2142.0,1552.0,821.0,1039.0
+200,,5242,Damana,Damana,1724.0,655.0,723.0,848.0
+201,,2212,Pallepola,Pallepola,1475.0,662.0,409.0,665.0
+202,,3215,Athuraliya,Athuraliya,398.0,187.0,206.0,200.0
+203,,1118,Padukka,Padukka,991.0,289.0,783.0,679.0
+204,,5236,Akkaraipattu,Akkaraipattu,1897.0,778.0,1083.0,947.0
+205,,8218,Badalkumbura,Badalkumbura,2447.0,2052.0,1085.0,1221.0
+206,,1112,Homagama,Homagama,1833.0,418.0,1717.0,1304.0
+207,,3218,Akuressa,Akuressa,2087.0,1097.0,1171.0,1093.0
+208,,8212,Siyambalanduwa,Siyambalanduwa,2077.0,1199.0,1079.0,1346.0
+209,,2209,Naula,Naula,1326.0,561.0,373.0,631.0
+210,,3212,Mulatiyana,Mulatiyana,1783.0,835.0,1148.0,1028.0
+211,,5233,Addalachchenai,Addalaichenai,2498,805,1277,1340
+212,,2203,Galewela,Galewela,3224.0,1425.0,1159.0,1437.0
+213,,6187,Polgahawela,Polgahawela,1827.0,768.0,942.0,996.0
+214,,5234,Eragama,Ampara,1512,531,609,706
+215,,1109,Kaduwela,Kaduwela,1741.0,487.0,1629.0,1349.0
+216,,6245,Wennappuwa,Wennappuwa,1402.0,384.0,887.0,738.0
+217,,5227,Karaitheevu,Karaitivu,1034,372,483,478
+218,,8209,Medagama,Medagama,2110.0,1121.0,861.0,929.0
+219,,2206,Dambulla,Dambulla,3278.0,1382.0,1108.0,1386.0
+220,,1103,Colombo,Colombo,3226.0,719.0,3670.0,2590.0
+221,,6239,Mahawewa,Mahawewa,1243.0,424.0,577.0,644.0
+222,,3209,Pasgoda,Pasgoda,1935.0,1086.0,1177.0,1055.0
+223,,8203,Bibila,Bibile,1851,1103,857,1049
+224,,5230,Ninthavur,Ninthavur,1600.0,774.0,690.0,528.0
+225,,6184,Alawwa,Alawwa,2353.0,1132.0,1030.0,943.0
+226,,1106,Kolonnawa,Kolonnawa,1997.0,492.0,2349.0,1657.0
+227,,6242,Nattandiya,Nattandiya,1169.0,376.0,700.0,617.0
+228,,5224,Kalmunai Muslim,Kalmunai,1530,652,865,457
+229,,8206,Madulla,Madulla,1128.0,716.0,530.0,627.0
+230,,4215,Musalai,Musalai,476.0,89.0,346.0,565.0
+231,,5225,Sainthamarathu,Sainthamarathu,1358.0,423.0,768.0,782.0
+232,,6236,Madampe,Madampe,1595.0,647.0,766.0,842.0
+233,,4212,Nanaddan,Nanaddan,566.0,102.0,336.0,550.0
+234,,6233,Chilaw,Chilaw,2309.0,860.0,1063.0,1148.0
+235,,6227,Pallama,Pallama,898.0,249.0,515.0,462.0
+236,,4209,Madhu,Madhu,264.0,24.0,208.0,290.0
+237,,6230,Arachchikattuwa,Arachchikattuwa,1253.0,360.0,790.0,729.0
+238,,4203,Mannar Town,Mannar Town,2012.0,275.0,1267.0,1956.0
+239,,6224,Anamaduwa,Anamaduwa,1542.0,374.0,891.0,931.0
+240,,4206,Manthai West,Manthai West,622.0,106.0,422.0,574.0
+241,,6221,Mahakumbukkadawala,Mahakumbukkadawala,715.0,206.0,468.0,386.0
+242,,3248,Dickwella,Dickwella,1607.0,549.0,972.0,1209.0
+243,,6215,Puttalam,Puttalam,2989.0,781.0,1935.0,1578.0
+244,,6218,Mundalama,Mundalama,2395.0,800.0,1587.0,1320.0
+245,,3245,Devinuwara,Devinuwara,1572.0,680.0,877.0,1046.0
+246,,3239,Weligama,Weligama,2160.0,910.0,1333.0,1214.0
+247,,1136,Kesbewa,Kesbewa,1561.0,380.0,1656.0,1125.0
+248,,3242,Matara Four Gravets,Four graves,732,2028,1264,1239
+249,,2233,Ukuwela,Ukuwela,3336.0,2024.0,763.0,1327.0
+250,,1131,Rathmalana,Ratmalana,665,185,696,549
+251,,2227,Wilgamuwa,Wilgamuwa,2120.0,625.0,727.0,1118.0
+252,,1133,Moratuwa,Moratuwa,2679.0,892.0,2004.0,1718.0
+253,,5315,Trincomalee Town & Gravets,Trincomalee Town and Gravets,3395,1307,1923,1421
+254,,8233,Sewanagala,Sevanagala,1598,609,859,925
+255,,2230,Rattota,Rattota,3010.0,2102.0,698.0,1107.0
+256,,1127,Thimbirigasyaya,Thimbirigasyaya,1471.0,399.0,1543.0,1132.0
+257,,5318,Thambalagamuwa,Thambalagamuwa,1474.0,514.0,895.0,749.0
+258,,2224,Laggala-Pallegama,Laggala-Pallegama,1193.0,556.0,327.0,581.0
+259,,1130,Dehiwala,Dehiwala-Mount Lavinia,398,153,403,316
+260,,5312,Morawewa,Morawewa,285.0,97.0,186.0,207.0
+261,,2221,Ambanganga Korale,Ambanganga Korale,713.0,623.0,141.0,272.0
+262,,2215,Yatawatta,Yatawatta,1179.0,667.0,190.0,353.0
+263,,5309,Gomarankadawala,Gomarankadawala,260.0,100.0,167.0,181.0
+264,,5303,Padavi Sri Pura,Padavi Sri Pura,202.0,47.0,177.0,165.0
+265,,2218,Matale,Matale,3033.0,1072.0,966.0,1335.0
+266,,5306,Kuchchaveli,Kuchchaveli,2227.0,1028.0,1218.0,1153.0
+267,,6248,Dankotuwa,Dankotuwa,1894.0,673.0,998.0,874.0
+268,,3333,Tangalle,Tangalle,4244.0,1283.0,1553.0,1935.0
+269,,3327,Okewela,Okewela,901.0,207.0,418.0,395.0
+270,,3330,Beliatta,Beliatta,2428.0,592.0,1193.0,1028.0
+271,,3324,Katuwana,Katuwana,2897.0,1060.0,989.0,1247.0
+272,,3325,Walasmulla,Walasmulla,2134.0,611.0,892.0,850.0
+273,,1221,Ja-Ela,Ja-Ela,2024.0,696.0,1846.0,1816.0
+274,,1215,Minuwangoda,Minuwangoda,2777.0,1041.0,2174.0,2226.0
+275,,3321,Weeraketiya,Weeraketiya,2157.0,548.0,885.0,1038.0
+276,,3315,Ambalantota,Ambalantota,3435.0,953.0,1361.0,1464.0
+277,,1218,Wattala,Wattala,1381.0,494.0,1248.0,1210.0
+278,,1212,Mirigama,Mirigama,3836.0,1727.0,2659.0,2786.0
+279,,3318,Angunukolapeles,Angunukolapeles,2454.0,642.0,1130.0,1191.0
+280,,2309,Walapane,Walapane,8783.0,3699.0,3585.0,3672.0
+281,,3312,Hambantota,Hambantota,2587.0,578.0,1272.0,1351.0
+282,,2303,Kothmale,Kothmale,6412.0,4116.0,2696.0,2584.0
+283,,5333,Verugal Eachchilampattu,Verugal,911,411,437,401
+284,,1209,Divulapitiya,Divulapitiya,3472.0,1319.0,2484.0,2668.0
+285,,5327,Muttur,Muttur,4015.0,1950.0,2031.0,1718.0
+286,,2306,Hanguranketha,Hanguranketha,6291.0,2127.0,3845.0,3192.0
+287,,1203,Negombo,Negombo,2238.0,800.0,1750.0,1855.0
+288,,3309,Tissamaharama,Tissamaharama,2867.0,829.0,1194.0,1292.0
+289,,5330,Seruvila,Serunuwara,602,246,306,243
+290,,3303,Sooriyawewa,Sooriyawewa,1467.0,338.0,657.0,711.0
+291,,1206,Katana,Katana,3095.0,1195.0,2297.0,2414.0
+292,,5324,Kinniya,Kinniya,3297.0,1143.0,1928.0,1604.0
+293,,3306,Lunugamvehera,Lunugamvehera,1452.0,315.0,569.0,776.0
+294,,5321,Kanthale,Kantalai,2024,804,1076,973
+295,,4312,Vengalacheddikulam,Vengalacheddikulam,1109.0,604.0,793.0,414.0
+296,,4309,Vavuniya,Vavuniya,3491.0,2143.0,2486.0,1475.0
+297,,4303,Vavuniya North,Vavuniya North,605.0,366.0,435.0,235.0
+298,,4306,Vavuniya South,Vavuniya South,562.0,383.0,305.0,219.0
+299,,1239,Biyagama,Biyagama,1795.0,503.0,1712.0,1501.0
+300,,1236,Kelaniya,Kelaniya,1999.0,862.0,1486.0,1622.0
+301,,1233,Mahara,Mahara,2674.0,904.0,2197.0,2150.0
+302,,1227,Attanagalla,Attanagalla,3249.0,1240.0,2528.0,2579.0
+303,,1230,Dompe,Dompe,3209.0,1135.0,2392.0,2455.0
+304,,1224,Gampaha,Gampaha,1872.0,656.0,1476.0,1482.0
+305,,2315,Ambagamuwa,Ambagamuwa,14371.0,11247.0,5080.0,5071.0
+306,,2312,Nuwara Eliya,Nuwara Eliya,6439.0,5665.0,1578.0,1791.0
+307,,1315,Madurawala,Madurawela,1077,637,695,628
+308,,1318,Millaniya,Millaniya,1698.0,816.0,1240.0,1049.0
+309,,1312,Bulathsinhala,Bulathsinhala,2005.0,1238.0,1315.0,1294.0
+310,,1309,Horana,Horana,2393.0,1072.0,1885.0,1792.0
+311,,1310,Ingiriya,Ingiriya,1786.0,1045.0,1193.0,1154.0
+312,,1303,Panadura,Panadura,2997.0,1256.0,2314.0,2397.0
+313,,1306,Bandaragama,Bandaragama,2610.0,1202.0,2031.0,1777.0
+314,,4415,Maritimepattu,Maritimepattu,1838.0,2342.0,530.0,577.0
+315,,4418,Welioya,Welioya,508.0,350.0,193.0,235.0
+316,,4412,Oddusuddan,Oddusuddan,941.0,1037.0,310.0,309.0
+317,,4409,Puthukudiyiruppu,Puthukudiyiruppu,1885.0,2277.0,574.0,625.0
+318,,4403,Tunukkai,Tunukkai,397.0,404.0,153.0,131.0
+319,,4406,Mathai East,Mathai East,219.0,222.0,100.0,109.0
+320,,1339,Walallawita,Walallavita,1784,946,1076,1105
+321,,1336,Palindanuwara,Palindanuwara,1718.0,1074.0,1100.0,1137.0
+322,,1333,Agalawatta,Agalawatta,979.0,459.0,706.0,629.0
+323,,1327,Dodangoda,Dodangoda,1779.0,1309.0,1106.0,1011.0
+324,,1330,Mathugama,Mathugama,2439.0,1356.0,1417.0,1482.0
+325,,1324,Beruwala,Beruwala,3661.0,1640.0,2256.0,2496.0
+326,,1321,Kaluthara,Kalutara,4538,2124,3003,2924
+327,,4512,Poonakary,Poonakary,1472.0,745.0,694.0,576.0
+328,,4509,Karachchi,Karachchi,3879.0,1792.0,1869.0,1238.0
+329,,4503,Pachchilaipalli,Pachchilaipalli,1178.0,596.0,471.0,298.0
+330,,4506,Kandavalai,Kandavalai,1391.0,647.0,758.0,480.0
