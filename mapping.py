@@ -14,11 +14,11 @@ app = Dash(__name__)
 
 
 app.layout = html.Div([
-    html.H4('Choropleth map of Sri Lanka based on ASWSUM data'),
+    html.H4('Choropleth map of Sri Lanka based on ASWESUMA data'),
     html.P("Poverty category:"),
     dcc.RadioItems(
         id='candidate',
-        options=["Severely Poor", "Poor",  "Transient", "Vulnerable"],
+        options=["Severely Poor", "Poor", "Vulnerable",  "Transient"],
         value="Poor",
         inline=True
     ),
