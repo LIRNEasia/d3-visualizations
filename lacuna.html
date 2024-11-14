@@ -16,23 +16,74 @@
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
         <a href="./" class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon">home</a>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-          <a href="https://lirneasia.net" target="_blank" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">LIRNEasia</span>
-          </a>
-        </section>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+        <a href="https://lirneasia.net" target="_blank" class="mdc-button mdc-button--unelevated" data-mdc-auto-init="MDCRipple">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">LIRNEasia</span>
+        </a>
+      </section>
     </div>
   </header>
+
   <main>
     <h1 class="mdc-typography--headline2">Lacuna</h1>
     <div class="container">
-      <p class="mdc-typography--body1"> some para about the prject and data goes here
-      </p>
-      </p>
+      <p class="mdc-typography--body1">Repository for the dataset collected in two parts: household electricity consumption data and survey data, collected across three survey rounds. Consumption data includes smart meter and non-smart meter data, while survey data is available from three separate waves, each containing four CSV files.</p>
     </div>
-  </main>
 
+    <h2 class="mdc-typography--headline4">Dataset Overview</h2>
+    <table class="mdc-data-table__table" style="width:100%; border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Data Type</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">File Name</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Description</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Features</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Download Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Consumption Data Rows -->
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2">Consumption Data</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Smart Meter Data</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household electricity consumption recorded every 15 minutes via smart meters.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">CUSTOMER_REF, Date, Time, Import kWh (kWh), Export kWh (kWh), Import kvarh (kvarh), Export kvarh (kvarh), Phase A Inst. Current (A), Phase ABC Power factor, Avg. Import kW (kW), Avg. Export kW (kW), Avg. Import kVA (kVA), Avg. Export kVA (kVA), Avg. Current (V), Avg. Voltage (V), Inst. Power factor</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">Download</a></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Non-Smart Meter Data</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Monthly Household electricity consumption data from households without smart meters.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">CUSTOMER_REF, Date, Consumption</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-non-smart-meter-data.csv" target="_blank">Download</a></td>
+        </tr>
+        
+        <!-- Survey Data Rows -->
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="3">Survey Data - Wave 1</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Demographics</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household demographic details collected in Wave 1.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Age, Gender, Education level, Occupation, etc.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-wave1-demographics.csv" target="_blank">Download</a></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Appliance Usage</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Details on appliance usage patterns in Wave 1.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Appliance type, No of appliances of the type, hours used during last week </td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-wave1-appliance.csv" target="_blank">Download</a></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room Roster</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the rooms of the household on Wave 1 data.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room type, Roof material used, floor material, no of windows, no of lights, ACs, Fans in the room</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-wave1-billing.csv" target="_blank">Download</a></td>
+        </tr>
+        
+        <!-- Repeat Survey Rows for Wave 2, Wave 3, etc. -->
+      </tbody>
+    </table>
+  </main>
 </body>
 
 </html>
