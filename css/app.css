@@ -121,3 +121,27 @@ svg :focus {
   color: var(--mdc-theme-text-primary-on-background);
   margin: 0;
 }
+
+/* */
+
+
+.responsive-image {
+      width: 75%;
+      height: auto; /* Maintains the aspect ratio */
+      max-width: 100%; /* Ensures the image doesn't overflow on smaller devices */
+      margin: 0 auto;
+      display: block; /* Centers the image */
+  }
+  
+@media (max-width: 768px) {
+      .responsive-image {
+          width: 90%; /* Adjust the width for tablets and small screens */
+      }
+}
+  
+@media (max-width: 480px) {
+      .responsive-image {
+          width: 100%; /* Adjust the width for mobile devices */
+     }
+ }
+  
