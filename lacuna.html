@@ -54,8 +54,8 @@
           <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Data Type</th>
           <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">File Name</th>
           <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Description</th>
-          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Data quality profiling / Exploratory data analysis</th>
-          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Features</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Data Quality Profiling / Exploratory Data Analysis</th>
+          <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Data Dictionary</th>
           <th style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Download Link</th>
         </tr>
       </thead>
@@ -66,14 +66,15 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Smart Meter Data</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household electricity consumption recorded every 15 minutes via smart meters.</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Time, Import kWh (kWh), Export kWh (kWh), Import kvarh (kvarh), Export kvarh (kvarh), Phase A Inst. Current (A), Phase ABC Power factor, Avg. Import kW (kW), Avg. Export kW (kW), etc</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2"><a href="link-to-smart-meter-data.csv" target="_blank">Download EC2 Dictionary</a></td>
+          <!-- <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Time, Import kWh (kWh), Export kWh (kWh), Import kvarh (kvarh), Export kvarh (kvarh), Phase A Inst. Current (A), Phase ABC Power factor, Avg. Import kW (kW), Avg. Export kW (kW), etc</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">Download</a></td>
         </tr>
         <tr>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Non-Smart Meter Data</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Monthly Household electricity consumption data from households without smart meters.</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Consumption</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Consumption</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-non-smart-meter-data.csv" target="_blank">Download</a></td>
         </tr>
         
@@ -83,7 +84,8 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Demographics</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household demographic details collected in Wave 1.</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_demographics.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Member_id, Age, Gender, Education level, Occupation, etc.</td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="8"><a href="link-to-smart-meter-data.csv" target="_blank">Download EC1 Dictionary</a></td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Member_id, Age, Gender, Education level, Occupation, etc.</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_demographics.csv" download="w1_demographics.csv" target="_blank">Download</a>
           </td>
@@ -92,7 +94,7 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household information and history</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the household, structure, materials used and history</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_household_information_and_history.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">No_of_electricity_meters, LECO CSC area, built_year, type_of_household, floor_area, etc</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">No_of_electricity_meters, LECO CSC area, built_year, type_of_household, floor_area, etc</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_household_information_and_history.csv" download="w1_household_information_and_history.csv" target="_blank">Download</a>
           </td>
@@ -102,7 +104,7 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Appliance Usage</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Details on appliance usage patterns in the household.</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_appliances.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Appliance type, No of appliances of the type, hours used during last week </td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Appliance type, No of appliances of the type, hours used during last week </td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_appliances.csv" download="w1_appliances.csv" target="_blank">Download</a>
           </td>
@@ -112,7 +114,7 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room Roster</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the rooms in the household</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_room_roster.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room type, Roof material used, floor material, no of windows, no of lights, ACs, Fans in the room</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room type, Roof material used, floor material, no of windows, no of lights, ACs, Fans in the room</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_room_roster.csv" download="w1_room_roster.csv" target="_blank">Download</a>
           </td>
@@ -122,7 +124,7 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Light Roster</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the lights in the household</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_light_roster.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_bulb, wattage_of_the_bulb, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_bulb, wattage_of_the_bulb, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_light_roster.csv" download="w1_light_roster.csv" target="_blank">Download</a>
           </td>
@@ -131,7 +133,7 @@
         <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Fan Roster</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the Fans in the household</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_fan_roster.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_fan, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_fan, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_fan_roster.csv" download="w1_fan_roster.csv" target="_blank">Download</a>
           </td>
@@ -140,7 +142,7 @@
         <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">AC Roster</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about the ACs in the household</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_ac_roster.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_AC, inverter_or_not, is_the_room_fully_sealed, wattage_of_the_ac, btu, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>
+          <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Room_id, type_of_the_AC, inverter_or_not, is_the_room_fully_sealed, wattage_of_the_ac, btu, No_of_hours_used_last_week(daytime), No_of_hours_used_last_week(nighttime)</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_ac_roster.csv" download="w1_ac_roster.csv" target="_blank">Download</a>
           </td>
@@ -150,7 +152,7 @@
       <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Other</td>
         <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Information about methods of electricity generation at home, water heating and cooking</td>
         <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_electricity_generation_water_heating_cooking.html" target="_blank">View</a></td>
-        <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">generation of electricity using solar power, energy source used for heating and cooling</td>
+        <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">generation of electricity using solar power, energy source used for heating and cooling</td>-->
         <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
           <a href="./resources/lacuna_dataset/survey_wave1/w1_electricity_generation_water_heating_cooking.csv" download="w1_electricity_generation_water_heating_cooking.csv" target="_blank">Download</a>
         </td>
