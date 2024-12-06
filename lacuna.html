@@ -27,23 +27,25 @@
   </header>
 
   <main>
-    <h1 class="mdc-typography--headline2">Lacuna</h1>
+    <h2 class="mdc-typography--headline2">Household electricity consumption dataset (LACUNA)</h2>
     <div class="container">
-      <p  class="mdc-typography--body1" align="center">Repository for the dataset collected in two parts: household electricity consumption data and three rounds of survey data. Consumption data includes smart meter and non-smart meter data.</p>
-      <img class="responsive-image" src="./resources/dataset_structure.png" alt="data set structure">
+      <p  class="mdc-typography--body1" align="center">This repository contains a subset of a larger two-part dataset, 
+        combining domestic electricity consumption data with survey responses from the same households. The dataset 
+        was compiled with support from the LACUNA Fund.</p>
+      <img class="responsive-image" src="./resources/dataset_structure.png" alt="Description of the full-dataset (This repository currently contains a subset)">
       <ul>
-        <li>EC-1: Data from a longitudinal survey (with 3 rounds of data collection over a period of one
-        year) capturing the drivers, attitudes and behaviour around domestic energy consumption of over 4,000 consumers of the Lanka Electricity Company (LECO).
-        These 4,000 consumers will be divided into two primary groups: 
+        <li>EC-1: Data from a longitudinal survey (with 3 rounds of data collection over one year) capturing the drivers, 
+          attitudes and behaviour around domestic energy consumption of over 4,000 consumers of the Lanka Electricity Company 
+          (LECO). These 4,000 consumers will be divided into two primary groups:
           <ul>
-            <li> 2000 households with smart electricity meters</li>
-            <li> 2000 households with traditional meters containing end-of-month consumption data. </li>
-          </ul>The survey will be representative for both smart-metered and non-smart-
-        metered households at +/- 2.2% margin of error at 95% confidence interval.</li>
-        <li>EC-2: Electricity consumption data for a 20-month period for the same 4,000 households on
-        which the survey is conducted. For the smart metered households, this will include detailed electricity profile
-        across different parameters (e.g., power, voltage, current) captured every 15 minutes. For non-
-        smart metered households, it will only be end-of-month total consumption.</li>
+            <li> 2000 households with smart electricity meters </li>
+            <li> 2000 households with traditional meters containing end-of-month consumption data </li>
+          </ul>The survey is representative for both smart-metered and non-smart- metered households of the electricity provider's 
+          customer base at +/- 2.2% margin of error at 95% confidence interval. </li>
+        <li>EC-2: Electricity consumption data for a 20-month period for the same 4,000 households on which the survey is 
+          conducted. For the smart metered households, this will include detailed electricity profile across different 
+          parameters (e.g., power, voltage, current). For non- smart metered households, it will only be end-of-month 
+          total consumption. </li>
         </ul>
     </div>
 
@@ -65,17 +67,20 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2">EC-2</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Smart Meter Data</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household electricity consumption recorded every 15 minutes via smart meters.</td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2"><a href="link-to-smart-meter-data.csv" target="_blank">Download EC2 Dictionary</a></td>
+          <!-- <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td> -->
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"></td>
+          <!-- <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2"><a href="link-to-smart-meter-data.csv" target="_blank">Download EC2 Dictionary</a></td> -->
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="2"></td>
           <!-- <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Time, Import kWh (kWh), Export kWh (kWh), Import kvarh (kvarh), Export kvarh (kvarh), Phase A Inst. Current (A), Phase ABC Power factor, Avg. Import kW (kW), Avg. Export kW (kW), etc</td>-->
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">Download</a></td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/lacuna_dataset/consumption/smart_meter_data" target="./resources/lacuna_dataset/consumption/smart_meter_data">Download</a></td>
         </tr>
         <tr>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Non-Smart Meter Data</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Monthly Household electricity consumption data from households without smart meters.</td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td>
+          <!-- <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-smart-meter-data.csv" target="_blank">View</a></td> -->
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"></td>
           <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Date, Consumption</td>-->
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="link-to-non-smart-meter-data.csv" target="_blank">Download</a></td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/lacuna_dataset/consumption/non_smart_meter_data.csv" download="non_smart_meter_data.csv" target="_blank">Download</a></td>
         </tr>
         
         <!-- Survey Data Rows -->
@@ -84,7 +89,7 @@
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Demographics</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household demographic details collected in Wave 1.</td>
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;"><a href="./resources/data_profiling/w1_demographics.html" target="_blank">View</a></td>
-          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="8"><a href="link-to-smart-meter-data.csv" target="_blank">Download EC1 Dictionary</a></td>
+          <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;" rowspan="8"><a href="./resources/data_dictionary/w1-data-dictionary.xlsx" download="w1-data-dictionary.xlsx" target="_blank">Download EC1 Dictionary</a></td>
           <!--<td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">Household_id, Member_id, Age, Gender, Education level, Occupation, etc.</td>-->
           <td style="border: 1px solid #ddd; padding: 8px; word-wrap: break-word; white-space: normal;">
             <a href="./resources/lacuna_dataset/survey_wave1/w1_demographics.csv" download="w1_demographics.csv" target="_blank">Download</a>
